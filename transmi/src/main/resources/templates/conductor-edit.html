@@ -7,7 +7,8 @@
 
 <body>
 <div class="formcontainer">
-  <h1>Conductor</h1>
+  <h1 id="dos">Conductor</h1>
+  <h1 id="uno">Conductor</h1>
   <form action="#" th:action="@{/conductor/save}" th:object="${conductor}" method="post">
     <input type="hidden" th:field="*{id}" id="id">
     <label for="conductorNombre">Nombre: </label>
@@ -26,11 +27,11 @@
     <input type="text" th:field="*{direccion}" id="conductorDireccion">
     <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"
           th:class="${#fields.hasErrors('direccion')} ? 'error' : ''"></span>
-    <button type="submit">Enviar</button>
+    <button class="opcion" type="submit">Enviar</button>
   </form>
 </div>
 
-<a th:href="@{/conductor/list}">Cancelar</a>
+<a class="opcion3" th:href="@{/conductor/list}">Cancelar</a>
 </body>
 
 </html>

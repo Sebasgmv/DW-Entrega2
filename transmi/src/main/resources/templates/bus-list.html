@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <link rel="stylesheet" href="/estilo.css">
+</head>
+
+<body>
+
+<h1 id="dos">Buses</h1>
+<h1 id="uno">Buses</h1>
+
+<a class="opcion2" th:href="@{/bus/create}">Crear</a>
+
+<table class="conductor-list">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Placa</th>
+    <th>Modelo</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr th:each="c : ${buses}" th:if="${c.id}">
+    <td th:text="${c.id}"></td>
+    <td th:text="${c.placa}"></td>
+    <td th:text="${c.modelo}"></td>
+    <td>
+      <a class="opcion" th:href="@{/bus/view/{id}(id=${c.id})}">Ver</a>
+    </td>
+    <td>
+      <a class="opcion" th:href="@{/bus/edit-form/{id}(id=${c.id})}">Editar</a>
+    </td>
+    <td>
+      <form  action="#" th:action="@{/bus/delete}" th:object="${bus}" method="post">
+        <button class="opcion" type="submit">Delete</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+
+</html>

@@ -7,8 +7,10 @@
 
 <body>
 
-<h1>Conductores</h1>
-<a th:href="@{/conductor/create}">Crear</a>
+<h1 id="dos">Conductores</h1>
+<h1 id="uno">Conductores</h1>
+
+<a class="opcion2" th:href="@{/conductor/create}">Crear</a>
 
 <table class="conductor-list">
     <thead>
@@ -29,13 +31,15 @@
         <td th:text="${c.telefono}"></td>
         <td th:text="${c.direccion}"></td>
         <td>
-            <a th:href="@{/conductor/view/{id}(id=${c.id})}">Ver</a>
+            <a class="opcion" th:href="@{/conductor/view/{id}(id=${c.id})}">Ver</a>
         </td>
         <td>
-            <a th:href="@{/conductor/edit-form/{id}(id=${c.id})}">Editar</a>
+            <a class="opcion" th:href="@{/conductor/edit-form/{id}(id=${c.id})}">Editar</a>
         </td>
         <td>
-            <a th:href="@{/conductor/delete/{id}(id=${c.id})}">Delete</a>
+            <form  action="#" th:action="@{/conductor/delete}" th:object="${conductor}" method="post">
+                <button class="opcion" type="submit">Delete</button>
+            </form>
         </td>
     </tr>
     </tbody>

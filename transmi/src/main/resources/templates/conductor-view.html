@@ -6,14 +6,17 @@
 
 </head>
 
-<body>
-<h1>Conductor</h1>
-<p th:text="|Id: ${conductor.id}|"></p>
-<p th:text="|Nombre: ${conductor.nombre}|"></p>
-<p th:text="|Cedula: ${conductor.cedula}|"></p>
-<p th:text="|Telefono: ${conductor.telefono}|"></p>
-<p th:text="|Direccion: ${conductor.direccion}|"></p>
-<a th:href="@{/conductor/list}">Volver</a>
+<body >
+<h1 id="dos">Conductor</h1>
+<h1 id="uno">Conductor</h1>
+<div class="texto">
+  <p th:text="|Id: ${conductor.id}|"></p>
+  <p th:text="|Nombre: ${conductor.nombre}|"></p>
+  <p th:text="|Cedula: ${conductor.cedula}|"></p>
+  <p th:text="|Telefono: ${conductor.telefono}|"></p>
+  <p th:text="|Direccion: ${conductor.direccion}|"></p>
+  <a class="opcion" th:href="@{/conductor/list}">Volver</a>
+</div>
 </body>
 
 </html>
