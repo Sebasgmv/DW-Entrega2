@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <link rel="stylesheet" href="/estilo.css">
+
+</head>
+
+<body>
+<h1>Conductor</h1>
+<p th:text="|Id: ${conductor.id}|"></p>
+<p th:text="|Nombre: ${conductor.nombre}|"></p>
+<p th:text="|Cedula: ${conductor.cedula}|"></p>
+<p th:text="|Telefono: ${conductor.telefono}|"></p>
+<p th:text="|Direccion: ${conductor.direccion}|"></p>
+<a th:href="@{/conductor/list}">Volver</a>
+</body>
+
+</html>

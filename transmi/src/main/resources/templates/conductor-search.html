@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <link rel="stylesheet" href="/estilo.css">
+</head>
+
+<body>
+
+<form method="get" action="#" th:action="@{/conductor/search}">
+  <label for="searchText">Buscar por nombre</label>
+  <input type="text" id="searchText" name="searchText">
+  <button type="submit">Search</button>
+</form>
+
+<h1>Conductores</h1>
+<table class="conductor-list">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th>Cedula</th>
+    <th>Telefono</th>
+    <th>Direccion</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr th:each="c : ${conductores}" th:if="${c.id}">
+    <td th:text="${c.id}"></td>
+    <td th:text="${c.nombre}"></td>
+    <td th:text="${c.cedula}"></td>
+    <td th:text="${c.telefono}"></td>
+    <td th:text="${c.direccion}"></td>
+    <td>
+      <a th:href="@{/conductor/view/{id}(id=${c.id})}">Ver</a>
+    </td>
+    <td>
+      <a th:href="@{/conductor/edit-form/{id}(id=${c.id})}">Editar</a>
+    </td>
+    <td>
+      <a th:href="@{/conductor/delete/{id}(id=${c.id})}">Borrar</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+
+</html>
