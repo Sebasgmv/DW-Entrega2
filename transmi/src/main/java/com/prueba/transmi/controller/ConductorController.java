@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/conductor")
-public class CordinadorController {
+public class ConductorController {
 
     Logger log = LoggerFactory.getLogger(getClass());
 

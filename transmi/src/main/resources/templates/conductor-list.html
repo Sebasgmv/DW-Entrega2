@@ -37,9 +37,7 @@
             <a class="opcion" th:href="@{/conductor/edit-form/{id}(id=${c.id})}">Editar</a>
         </td>
         <td>
-            <form  action="#" th:action="@{/conductor/delete}" th:object="${conductor}" method="post">
-                <button class="opcion" type="submit">Delete</button>
-            </form>
+            <a class="opcion" th:href="@{/conductor/delete/{id}(id=${c.id})}">Delete</a>
         </td>
     </tr>
     </tbody>

@@ -25,4 +25,8 @@ public class Horario {
         this.id = id;
     }
 
+    Date date = new Date();
+    public Horario() {
+        this.dia = date;
+    }
 }

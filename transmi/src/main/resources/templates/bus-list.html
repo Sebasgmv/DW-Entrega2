@@ -33,9 +33,7 @@
       <a class="opcion" th:href="@{/bus/edit-form/{id}(id=${c.id})}">Editar</a>
     </td>
     <td>
-      <form  action="#" th:action="@{/bus/delete}" th:object="${bus}" method="post">
-        <button class="opcion" type="submit">Delete</button>
-      </form>
+      <a class="opcion" th:href="@{/bus/delete/{id}(id=${c.id})}">Delete</a>
     </td>
   </tr>
   </tbody>

@@ -12,7 +12,6 @@ public class Ruta {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String codigo;
     @OneToMany(mappedBy = "ruta")
     private List<Estacion> estacions = new ArrayList<>();
 
