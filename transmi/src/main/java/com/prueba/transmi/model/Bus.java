@@ -6,6 +6,7 @@ import java.util.List;
 
 @Entity
 public class Bus {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -46,5 +47,17 @@ public class Bus {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    public List<Trabajo> getTrabajos() {
+        return trabajos;
+    }
+
+    public void setTrabajos(List<Trabajo> trabajos) {
+        this.trabajos = trabajos;
+    }
+
+    public boolean addTrabajos(Trabajo trabajo) {
+        return trabajos.add(trabajo);
     }
 }

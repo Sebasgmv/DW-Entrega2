@@ -1,5 +1,6 @@
 package com.prueba.transmi.controller;
 
+import com.prueba.transmi.model.Bus;
 import com.prueba.transmi.model.Conductor;
 import com.prueba.transmi.repository.ConductorRepository;
 import com.prueba.transmi.service.CoordiService;
@@ -77,6 +78,13 @@ public class ConductorController {
         Conductor c = new Conductor();
         model.addAttribute("conductor", c);
         return "conductor-create";
+    }
+
+    @GetMapping("/bus")
+    public String listarBuses(Model model) {
+        List<Bus> buses = coordiService.listarBuses();
+        model.addAttribute("buses", buses);
+        return "bus-list";
     }
 
 

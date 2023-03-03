@@ -19,6 +19,10 @@ public class Trabajo {
     @JoinColumn(name = "horario_id")
     private Horario horario;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "conductor_id")
+    private Conductor conductor;
+
     public Long getId() {
         return id;
     }
@@ -30,10 +34,11 @@ public class Trabajo {
     public Trabajo() {
     }
 
-    public Trabajo(Bus bus, Ruta ruta, Horario horario) {
+    public Trabajo(Bus bus, Ruta ruta, Horario horario, Conductor conductor) {
         this.bus = bus;
         this.ruta = ruta;
         this.horario = horario;
+        this.conductor = conductor;
     }
 
     public Bus getBus() {
@@ -58,5 +63,13 @@ public class Trabajo {
 
     public void setHorario(Horario horario) {
         this.horario = horario;
+    }
+
+    public Conductor getConductor() {
+        return conductor;
+    }
+
+    public void setConductor(Conductor conductor) {
+        this.conductor = conductor;
     }
 }

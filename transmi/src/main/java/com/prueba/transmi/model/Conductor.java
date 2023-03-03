@@ -17,7 +17,7 @@ public class Conductor {
     private String telefono;
     private String direccion;
 
-    @OneToMany(mappedBy = "bus")
+    @OneToMany(mappedBy = "conductor")
     private List<Trabajo> trabajos = new ArrayList<>();
 
     public Conductor() {
@@ -69,4 +69,16 @@ public class Conductor {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    public List<Trabajo> getTrabajos() {
+        return trabajos;
+    }
+
+    public void setTrabajos(List<Trabajo> trabajos) {
+        this.trabajos = trabajos;
+    }
+
+//    public boolean addDivision(Division div) {
+//        return divisions.add(div);
+//    }
 }

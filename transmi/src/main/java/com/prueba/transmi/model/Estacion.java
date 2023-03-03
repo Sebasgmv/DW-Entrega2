@@ -23,4 +23,27 @@ public class Estacion {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Estacion() {
+    }
+
+    public Estacion(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Ruta getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(Ruta ruta) {
+        this.ruta = ruta;
+    }
 }
