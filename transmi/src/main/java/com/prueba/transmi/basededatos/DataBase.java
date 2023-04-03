@@ -72,28 +72,28 @@ public class DataBase implements ApplicationRunner {
         trabajo.setHorario(horario);
         trabajo.setRuta(ruta);
 
-        List<Trabajo> trabajos = Arrays.asList(trabajo);
+//        List<Trabajo> trabajos = Arrays.asList(trabajo);
+//
+////        conductor.addTrabajos(trabajo);
+//        bus.addTrabajos(trabajo);
+////        horario.addTrabajos(trabajos);
+//        ruta.setTrabajos(trabajos);
+//
+//        conductorRepository.save(conductor);
+//        conductorRepository.save(conductor1);
+//
+//        busRepository.save(bus);
+//        busRepository.save(bus1);
+//
+//        horarioRepository.save(horario);
+//        horarioRepository.save(horario1);
+//
+//        estacionRepositorio.save(estacion);
+//        estacionRepositorio.save(estacion1);
+//
+//        rutaRepositorio.save(ruta);
+//        rutaRepositorio.save(ruta1);
 
-//        conductor.addTrabajos(trabajo);
-        bus.addTrabajos(trabajo);
-//        horario.addTrabajos(trabajos);
-        ruta.setTrabajos(trabajos);
-
-        conductorRepository.save(conductor);
-        conductorRepository.save(conductor1);
-
-        busRepository.save(bus);
-        busRepository.save(bus1);
-
-        horarioRepository.save(horario);
-        horarioRepository.save(horario1);
-
-        estacionRepositorio.save(estacion);
-        estacionRepositorio.save(estacion1);
-
-        rutaRepositorio.save(ruta);
-        rutaRepositorio.save(ruta1);
-
-//        trabajoRepositorio.save(trabajo);
+        trabajoRepositorio.save(trabajo);
     }
 }
