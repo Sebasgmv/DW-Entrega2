@@ -12,7 +12,6 @@ public class Ruta {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String codigo;
     @OneToMany(mappedBy = "ruta")
     private List<Estacion> estacions = new ArrayList<>();
 
@@ -28,5 +27,25 @@ public class Ruta {
     }
 
     public Ruta() {
+    }
+
+    public Ruta(List<Estacion> estacions) {
+        this.estacions = estacions;
+    }
+
+    public List<Estacion> getEstacions() {
+        return estacions;
+    }
+
+    public void setEstacions(List<Estacion> estacions) {
+        this.estacions = estacions;
+    }
+
+    public List<Trabajo> getTrabajos() {
+        return trabajos;
+    }
+
+    public void setTrabajos(List<Trabajo> trabajos) {
+        this.trabajos = trabajos;
     }
 }

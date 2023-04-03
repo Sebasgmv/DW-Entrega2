@@ -1,6 +1,8 @@
 package com.prueba.transmi.service;
 
+import com.prueba.transmi.model.Bus;
 import com.prueba.transmi.model.Conductor;
+import com.prueba.transmi.repository.BusRepository;
 import com.prueba.transmi.repository.ConductorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +14,14 @@ public class CoordiService {
 
     @Autowired
     private ConductorRepository conductorRepository;
+    private BusRepository busRepository;
 
     public List<Conductor> listarConductores() {
         return conductorRepository.findAll();
+    }
+
+    public List<Bus> listarBuses() {
+        return busRepository.findAll();
     }
 
     public Conductor recuperarConductor(Long id) {

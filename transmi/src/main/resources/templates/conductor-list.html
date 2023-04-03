@@ -11,6 +11,7 @@
 <h1 id="uno">Conductores</h1>
 
 <a class="opcion2" th:href="@{/conductor/create}">Crear</a>
+<a class="opcion2" th:href="@{/conductor/bus}">Buses asignados</a>
 
 <table class="conductor-list">
     <thead>
@@ -36,7 +37,9 @@
         <td>
             <a class="opcion" th:href="@{/conductor/edit-form/{id}(id=${c.id})}">Editar</a>
         </td>
-        <td>    <a class="opcion" th:href="@{/conductor/delete/{id}(id=${c.id})}">Delete</a></td>
+        <td>
+            <a class="opcion" th:href="@{/conductor/delete/{id}(id=${c.id})}">Delete</a>
+        </td>
     </tr>
     </tbody>
 </table>
