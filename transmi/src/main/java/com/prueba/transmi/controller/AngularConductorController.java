@@ -2,54 +2,38 @@ package com.prueba.transmi.controller;
 
 import com.prueba.transmi.model.Bus;
 import com.prueba.transmi.model.Conductor;
-import com.prueba.transmi.model.dto.Conductordto;
 import com.prueba.transmi.repository.ConductorRepository;
 import com.prueba.transmi.service.CoordiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import javax.validation.Valid;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/conductor")
-public class ConductorController {
+public class AngularConductorController {
 
     Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private CoordiService coordiService;
 
-//    @CrossOrigin("http://localhost:4201")
-   /* @GetMapping("/list")
-    public String listarConductores(Model model) {
-        List<Conductor> conductores = coordiService.listarConductores();
-        model.addAttribute("conductores", conductores);
-        return "conductor-list";
-    }*/
-
     @GetMapping("/list")
     @CrossOrigin("http://localhost:4201")
     public List<Conductor> findAll() {
         List<Conductor> conductores = coordiService.listarConductores();
-        /*List<Conductordto> conductordtoList = new ArrayList<Conductordto>();
-        for (Conductor conductor: conductores) {
-            Conductordto conductordto = new Conductordto(
-                    conductor.getId(),
-                    conductor.getNombre(),
-                    conductor.getCedula(),
-                    conductor.getTelefono(),
-                    conductor.getDireccion()
-            );
-            conductordtoList.add(conductordto);
-        }
-        return conductordtoList;*/
         return conductores;
+    }
+
+    @CrossOrigin("http://localhost:4200/")
+    @PutMapping("")
+    public Conductor modificarPersona(@Valid @RequestBody Conductor conductor) {
+        return coordiService.editarConductor(conductor);
     }
 
     @GetMapping("/edit-form/{id}")

@@ -32,6 +32,10 @@ public class CoordiService {
         conductorRepository.save(conductor);
     }
 
+    public Conductor editarConductor(Conductor conductor) {
+        conductorRepository.save(conductor);
+    }
+
     public void borrarConductor(long id) {
         conductorRepository.deleteById(id);
     }

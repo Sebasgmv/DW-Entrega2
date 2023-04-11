@@ -1,32 +1,14 @@
-package com.prueba.transmi.model;
+package com.prueba.transmi.model.dto;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-
-@Entity
-@Table(name = "conductores")
-public class Conductor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+public class Conductordto {
     private Long id;
     private String nombre;
     private String cedula;
     private String telefono;
     private String direccion;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "conductor")
-    private List<Trabajo> trabajos = new ArrayList<>();
-
-    public Conductor() {
-    }
-
-    public Conductor( String nombre, String cedula, String telefono, String direccion) {
+    public Conductordto(Long id, String nombre, String cedula, String telefono, String direccion) {
+        this.id = id;
         this.nombre = nombre;
         this.cedula = cedula;
         this.telefono = telefono;
@@ -72,16 +54,4 @@ public class Conductor {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
-    public List<Trabajo> getTrabajos() {
-        return trabajos;
-    }
-
-    public void setTrabajos(List<Trabajo> trabajos) {
-        this.trabajos = trabajos;
-    }
-
-//    public boolean addDivision(Division div) {
-//        return divisions.add(div);
-//    }
 }

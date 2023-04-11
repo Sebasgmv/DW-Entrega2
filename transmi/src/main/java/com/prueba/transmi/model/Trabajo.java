@@ -1,6 +1,8 @@
 package com.prueba.transmi.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,7 @@ public class Trabajo {
     @JoinColumn(name = "horario_id")
     private Horario horario;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "conductor_id")
     private Conductor conductor;
