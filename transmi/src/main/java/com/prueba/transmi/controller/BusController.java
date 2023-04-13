@@ -6,10 +6,8 @@ import com.prueba.transmi.service.CoordiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +29,12 @@ public class BusController {
     public List<Bus> findAll() {
         List<Bus> buses = coordiService.listarBuses();
         return buses;
+    }
+
+    @CrossOrigin("http://localhost:4201/")
+    @GetMapping("/view/{idBus}")
+    public Bus recuperarBus(Model model, @PathVariable("idBus") Long id) {
+        return coordiService.recuperarBus(id);
     }
 
 

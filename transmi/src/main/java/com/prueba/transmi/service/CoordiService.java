@@ -30,6 +30,10 @@ public class CoordiService {
         return conductorRepository.findById(id).orElseThrow();
     }
 
+    public Bus recuperarBus(Long id) {
+        return busRepository.findById(id).orElseThrow();
+    }
+
     public void guardarConductor(Conductor conductor) {
         conductorRepository.save(conductor);
     }
