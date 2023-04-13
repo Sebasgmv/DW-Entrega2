@@ -14,6 +14,8 @@ public class CoordiService {
 
     @Autowired
     private ConductorRepository conductorRepository;
+
+    @Autowired
     private BusRepository busRepository;
 
     public List<Conductor> listarConductores() {
@@ -33,7 +35,7 @@ public class CoordiService {
     }
 
     public Conductor editarConductor(Conductor conductor) {
-        conductorRepository.save(conductor);
+        return conductorRepository.save(conductor);
     }
 
     public void borrarConductor(long id) {

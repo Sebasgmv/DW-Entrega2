@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/conductor")
 public class ConductorController {
 
@@ -25,30 +25,20 @@ public class ConductorController {
     @Autowired
     private CoordiService coordiService;
 
+
+//SPRING
 //    @CrossOrigin("http://localhost:4201")
-   /* @GetMapping("/list")
-    public String listarConductores(Model model) {
-        List<Conductor> conductores = coordiService.listarConductores();
-        model.addAttribute("conductores", conductores);
-        return "conductor-list";
-    }*/
+//    @GetMapping("/list")
+//    public String listarConductores(Model model) {
+//        List<Conductor> conductores = coordiService.listarConductores();
+//        model.addAttribute("conductores", conductores);
+//        return "conductor-list";
+//    }
 
     @GetMapping("/list")
     @CrossOrigin("http://localhost:4201")
     public List<Conductor> findAll() {
         List<Conductor> conductores = coordiService.listarConductores();
-        /*List<Conductordto> conductordtoList = new ArrayList<Conductordto>();
-        for (Conductor conductor: conductores) {
-            Conductordto conductordto = new Conductordto(
-                    conductor.getId(),
-                    conductor.getNombre(),
-                    conductor.getCedula(),
-                    conductor.getTelefono(),
-                    conductor.getDireccion()
-            );
-            conductordtoList.add(conductordto);
-        }
-        return conductordtoList;*/
         return conductores;
     }
 
