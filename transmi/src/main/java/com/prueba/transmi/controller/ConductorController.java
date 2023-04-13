@@ -112,7 +112,7 @@ public class ConductorController {
 
     @CrossOrigin("http://localhost:4201/")
     @DeleteMapping("/delete/{id}")
-    public void eliminarConductor(@Valid @PathVariable Long id) {
+    public void eliminarConductor(@PathVariable Long id) {
         coordiService.borrarConductor(id);
     }
 
