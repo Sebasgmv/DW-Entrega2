@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,12 +43,18 @@ public class ConductorController {
         return conductores;
     }
 
-    @GetMapping("/edit-form/{id}")
+    /*@GetMapping("/edit-form/{id}")
     @CrossOrigin("http://localhost:4201/")
     public String formularioEditarPersona(Model model, @PathVariable Long id) {
         Conductor c = coordiService.recuperarConductor(id);
         model.addAttribute("conductor", c);
         return "conductor-edit";
+    }*/
+
+    @CrossOrigin("http://localhost:4201/")
+    @PutMapping("")
+    public Conductor editarConductor(@Valid @RequestBody Conductor conductor) {
+        return coordiService.update(conductor);
     }
 
     @GetMapping("/search")

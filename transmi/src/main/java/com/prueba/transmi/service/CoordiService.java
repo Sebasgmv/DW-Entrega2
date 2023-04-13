@@ -34,7 +34,7 @@ public class CoordiService {
         conductorRepository.save(conductor);
     }
 
-    public Conductor editarConductor(Conductor conductor) {
+    public Conductor update(Conductor conductor) {
         return conductorRepository.save(conductor);
     }
 
