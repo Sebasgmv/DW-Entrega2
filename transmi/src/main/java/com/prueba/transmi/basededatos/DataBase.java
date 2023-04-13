@@ -7,7 +7,6 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Component
@@ -39,7 +38,7 @@ public class DataBase implements ApplicationRunner {
     RutaRepositorio rutaRepositorio;
 
     @Autowired
-    EstacionRepositorio estacionRepositorio;
+    EstacionRepository estacionRepository;
     @Autowired
     private TrabajoRepositorio trabajoRepositorio;
 
@@ -62,9 +61,11 @@ public class DataBase implements ApplicationRunner {
         List estaciones = Arrays.asList(estacion);
         List estaciones1 = Arrays.asList(estacion1, estacion2);
 
-        Ruta ruta = new Ruta();
-        ruta.setEstaciones(estaciones1);
+
+        Ruta ruta = new Ruta(estaciones);
+//        ruta.setEstaciones(estaciones1);
         Ruta ruta1 = new Ruta(estaciones1);
+        estacion.setRuta(ruta);
 
         Trabajo trabajo = new Trabajo();
 

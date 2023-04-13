@@ -13,7 +13,6 @@ public class Ruta {
     private Long id;
 
     @OneToMany(mappedBy = "ruta", cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "estacion_id")
     private List<Estacion> estaciones = new ArrayList<>();
 
     @OneToMany(mappedBy = "ruta")

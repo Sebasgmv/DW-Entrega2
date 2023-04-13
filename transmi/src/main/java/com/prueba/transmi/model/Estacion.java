@@ -1,6 +1,8 @@
 package com.prueba.transmi.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,9 +12,11 @@ public class Estacion {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "nombre", nullable = true)
     private String nombre;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ruta_id")
     private Ruta ruta;
 
