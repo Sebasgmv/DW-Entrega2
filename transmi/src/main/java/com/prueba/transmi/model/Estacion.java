@@ -2,12 +2,15 @@ package com.prueba.transmi.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
 @Entity
 public class Estacion {
     @Id
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;

@@ -1,6 +1,9 @@
 package com.prueba.transmi.model;
 
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +21,7 @@ public class Horario {
     private String HoraFin;
 
     @OneToMany(mappedBy = "horario")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Trabajo> trabajos = new ArrayList<>();
 
     public Long getId() {

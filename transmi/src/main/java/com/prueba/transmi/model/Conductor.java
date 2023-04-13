@@ -2,6 +2,8 @@ package com.prueba.transmi.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class Conductor {
 
     @JsonIgnore
     @OneToMany(mappedBy = "conductor")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Trabajo> trabajos = new ArrayList<>();
 
     public Conductor() {

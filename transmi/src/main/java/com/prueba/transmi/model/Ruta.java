@@ -1,6 +1,9 @@
 package com.prueba.transmi.model;
 
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,7 @@ public class Ruta {
     private List<Estacion> estaciones = new ArrayList<>();
 
     @OneToMany(mappedBy = "ruta")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Trabajo> trabajos = new ArrayList<>();
 
     public Long getId() {
