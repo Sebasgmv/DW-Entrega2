@@ -108,14 +108,6 @@ public class ConductorController {
         return "conductor-create";
     }
 
-    @GetMapping("/bus")
-    @CrossOrigin("http://localhost:4201/")
-    public String listarBuses(Model model) {
-        List<Bus> buses = coordiService.listarBuses();
-        model.addAttribute("buses", buses);
-        return "bus-list";
-    }
-
 
     @Autowired
     ConductorRepository conductorRepository;

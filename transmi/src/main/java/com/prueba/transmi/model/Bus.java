@@ -1,5 +1,7 @@
 package com.prueba.transmi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ public class Bus {
     private String placa;
     private String modelo;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "bus")
     private List<Trabajo> trabajos = new ArrayList<>();
 
