@@ -12,8 +12,9 @@ public class Ruta {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToMany(mappedBy = "ruta")
-    private List<Estacion> estacions = new ArrayList<>();
+    @OneToMany(mappedBy = "ruta", cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "estacion_id")
+    private List<Estacion> estaciones = new ArrayList<>();
 
     @OneToMany(mappedBy = "ruta")
     private List<Trabajo> trabajos = new ArrayList<>();
@@ -29,16 +30,16 @@ public class Ruta {
     public Ruta() {
     }
 
-    public Ruta(List<Estacion> estacions) {
-        this.estacions = estacions;
+    public Ruta(List<Estacion> estaciones) {
+        this.estaciones = estaciones;
     }
 
-    public List<Estacion> getEstacions() {
-        return estacions;
+    public List<Estacion> getEstaciones() {
+        return estaciones;
     }
 
-    public void setEstacions(List<Estacion> estacions) {
-        this.estacions = estacions;
+    public void setEstaciones(List<Estacion> estacions) {
+        this.estaciones = estacions;
     }
 
     public List<Trabajo> getTrabajos() {

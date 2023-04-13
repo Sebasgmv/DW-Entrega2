@@ -1,6 +1,7 @@
 package com.prueba.transmi.controller;
 
 import com.prueba.transmi.model.Bus;
+import com.prueba.transmi.model.Conductor;
 import com.prueba.transmi.repository.BusRepository;
 import com.prueba.transmi.service.CoordiService;
 import org.slf4j.Logger;
@@ -9,15 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/bus")
 public class BusController {
 
+    @Autowired
+    BusRepository busRepository;
     Logger log = LoggerFactory.getLogger(getClass());
-
-
     private CoordiService coordiService;
 
     public BusController(CoordiService coordiService) {
@@ -36,8 +38,15 @@ public class BusController {
     public Bus recuperarBus(Model model, @PathVariable("idBus") Long id) {
         return coordiService.recuperarBus(id);
     }
+    @CrossOrigin("http://localhost:4201/")
+    @PostMapping("")
+    public Bus crearBus(@Valid @RequestBody Bus bus) {
+        return coordiService.crearBus(bus);
+    }
 
-
-    @Autowired
-    BusRepository busRepository;
+    @CrossOrigin("http://localhost:4201/")
+    @PutMapping("")
+    public Bus editarBus(@Valid @RequestBody Bus bus) {
+        return coordiService.updateBus(bus);
+    }
 }

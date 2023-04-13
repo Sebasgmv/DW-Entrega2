@@ -1,20 +1,16 @@
 package com.prueba.transmi.controller;
 
-import com.prueba.transmi.model.Bus;
 import com.prueba.transmi.model.Conductor;
-import com.prueba.transmi.model.dto.Conductordto;
 import com.prueba.transmi.repository.ConductorRepository;
 import com.prueba.transmi.service.CoordiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -52,9 +48,15 @@ public class ConductorController {
     }*/
 
     @CrossOrigin("http://localhost:4201/")
+    @PostMapping("")
+    public Conductor crearConductor(@Valid @RequestBody Conductor conductor) {
+        return coordiService.crearConductor(conductor);
+    }
+
+    @CrossOrigin("http://localhost:4201/")
     @PutMapping("")
     public Conductor editarConductor(@Valid @RequestBody Conductor conductor) {
-        return coordiService.update(conductor);
+        return coordiService.updateConductor(conductor);
     }
 
     @GetMapping("/search")
@@ -72,7 +74,7 @@ public class ConductorController {
         return "conductor-search";
     }
     @PostMapping(value = "/save")
-    @CrossOrigin("http://localhost:4201/")
+//    @CrossOrigin("http://localhost:4201/")
     public String guardarConductor(Conductor conductor, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "conductor-edit";
@@ -101,12 +103,19 @@ public class ConductorController {
 //        return ResponseEntity.status(HttpStatus.OK).body(coordiService.recuperarConductor(id));
 //    }
 
-    @GetMapping(value = "/delete/{id}")
+//    @GetMapping(value = "/delete/{id}")
+////    @CrossOrigin("http://localhost:4201/")
+//    public String borrarConductor( @PathVariable Long id) {
+//        coordiService.borrarConductor(id);
+//        return "redirect:/conductor/list";
+//    }
+
     @CrossOrigin("http://localhost:4201/")
-    public String borrarConductor( @PathVariable Long id) {
+    @DeleteMapping("/delete/{id}")
+    public void eliminarConductor(@Valid @PathVariable Long id) {
         coordiService.borrarConductor(id);
-        return "redirect:/conductor/list";
     }
+
     @GetMapping("/create")
     @CrossOrigin("http://localhost:4201/")
     public String crearConductor(Model model) {

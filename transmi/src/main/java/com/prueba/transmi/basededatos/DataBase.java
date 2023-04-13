@@ -62,7 +62,8 @@ public class DataBase implements ApplicationRunner {
         List estaciones = Arrays.asList(estacion);
         List estaciones1 = Arrays.asList(estacion1, estacion2);
 
-        Ruta ruta = new Ruta(estaciones);
+        Ruta ruta = new Ruta();
+        ruta.setEstaciones(estaciones1);
         Ruta ruta1 = new Ruta(estaciones1);
 
         Trabajo trabajo = new Trabajo();

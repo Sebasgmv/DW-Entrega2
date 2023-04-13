@@ -37,9 +37,19 @@ public class CoordiService {
     public void guardarConductor(Conductor conductor) {
         conductorRepository.save(conductor);
     }
-
-    public Conductor update(Conductor conductor) {
+    public Conductor crearConductor(Conductor conductor) {
         return conductorRepository.save(conductor);
+    }
+    public Bus crearBus(Bus bus) {
+        return busRepository.save(bus);
+    }
+
+    public Conductor updateConductor(Conductor conductor) {
+        return conductorRepository.save(conductor);
+    }
+
+    public Bus updateBus(Bus bus) {
+        return busRepository.save(bus);
     }
 
     public void borrarConductor(long id) {

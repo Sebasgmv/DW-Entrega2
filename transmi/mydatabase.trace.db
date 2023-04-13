@@ -2,3 +2,7 @@
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]CONDUCTORES"; se esperaba "COMMIT, CREATE, CALL, CHECKPOINT, COMMENT"
 Syntax error in SQL statement "[*]CONDUCTORES"; expected "COMMIT, CREATE, CALL, CHECKPOINT, COMMENT"; SQL statement:
 CONDUCTORES [42001-214]
+2023-04-13 02:32:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]RUTA"; se esperaba "ROLLBACK, REVOKE, RUNSCRIPT, RELEASE"
+Syntax error in SQL statement "[*]RUTA"; expected "ROLLBACK, REVOKE, RUNSCRIPT, RELEASE"; SQL statement:
+RUTA [42001-214]
