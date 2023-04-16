@@ -1,7 +1,8 @@
 package com.prueba.transmi.controller;
 
 import com.prueba.transmi.model.Estacion;
-import com.prueba.transmi.repository.EstacionRepository;
+import com.prueba.transmi.model.Ruta;
+import com.prueba.transmi.repository.RutaRepository;
 import com.prueba.transmi.service.AdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,44 +14,44 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/estacion")
-public class EstacionController {
+@RequestMapping("/ruta")
+public class RutaController {
     @Autowired
-    EstacionRepository estacionRepository;
+    RutaRepository rutaRepository;
     Logger log = LoggerFactory.getLogger(getClass());
     private AdminService adminService;
 
-    public EstacionController(AdminService adminService) {
+    public RutaController(AdminService adminService) {
         this.adminService = adminService;
     }
 
     @GetMapping("/list")
     @CrossOrigin("http://localhost:4201/")
-    public List<Estacion> findAll() {
-        List<Estacion> estaciones = adminService.listarEstacion();
-        return estaciones;
+    public List<Ruta> findAll() {
+        List<Ruta> rutas = adminService.listarRuta();
+        return rutas;
     }
 
     @CrossOrigin("http://localhost:4201/")
-    @GetMapping("/view/{idEstacion}")
-    public Estacion recuperarEstacion(Model model, @PathVariable("idEstacion") Long id) {
-        return adminService.recuperarEstacion(id);
+    @GetMapping("/view/{idRuta}")
+    public Ruta recuperarRuta(Model model, @PathVariable("idRuta") Long id) {
+        return adminService.recuperarRuta(id);
     }
     @CrossOrigin("http://localhost:4201/")
     @PostMapping("")
-    public Estacion crearEstacion(@Valid @RequestBody Estacion estacion) {
-        return adminService.crearEstacion(estacion);
+    public Ruta crearRuta(@Valid @RequestBody Ruta ruta) {
+        return adminService.crearRuta(ruta);
     }
 
     @CrossOrigin("http://localhost:4201/")
     @PutMapping("")
-    public Estacion editarEstacion(@Valid @RequestBody Estacion estacion) {
-        return adminService.updateEstacion(estacion);
+    public Ruta editarRuta(@Valid @RequestBody Ruta ruta) {
+        return adminService.updateRuta(ruta);
     }
     @CrossOrigin("http://localhost:4201/")
     @DeleteMapping("/delete/{id}")
-    public void eliminarEstacion(@PathVariable Long id) {
-        adminService.borrarEstacion(id);
+    public void eliminarRuta(@PathVariable Long id) {
+        adminService.borrarRuta(id);
     }
 
 }

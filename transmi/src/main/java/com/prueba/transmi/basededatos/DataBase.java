@@ -35,7 +35,7 @@ public class DataBase implements ApplicationRunner {
     HorarioRepository horarioRepository;
 
     @Autowired
-    RutaRepositorio rutaRepositorio;
+    RutaRepository rutaRepository;
 
     @Autowired
     EstacionRepository estacionRepository;

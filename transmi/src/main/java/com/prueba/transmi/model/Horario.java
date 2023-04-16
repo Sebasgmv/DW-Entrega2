@@ -17,7 +17,6 @@ public class Horario {
     @Column(name = "id", nullable = false)
     private Long id;
     private String dias;
-
     private String HoraInicio;
     private String HoraFin;
 

@@ -23,10 +23,14 @@ public class Ruta {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Trabajo> trabajos = new ArrayList<>();
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "rutas", cascade = CascadeType.PERSIST)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Estacion> estaciones = new ArrayList<>();
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.PERSIST)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "horario_id")
     private Horario horario;
 
