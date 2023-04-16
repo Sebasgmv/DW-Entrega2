@@ -21,19 +21,31 @@ public class Horario {
     private String HoraInicio;
     private String HoraFin;
 
-    @ManyToMany
+   /* @ManyToMany
     @JoinTable(name = "horario_rutas",
             joinColumns = @JoinColumn(name = "horario_id"),
             inverseJoinColumns = @JoinColumn(name = "rutas_id"))
-    private List<Ruta> rutas = new ArrayList<>();
+    private List<Ruta> rutas = new ArrayList<>();*/
 
-    public List<Ruta> getRutas() {
+    @OneToMany(mappedBy = "horario", orphanRemoval = true)
+    private List<Ruta> rutas1 = new ArrayList<>();
+
+    public List<Ruta> getRutas1() {
+        return rutas1;
+    }
+
+    public void setRutas1(List<Ruta> rutas1) {
+        this.rutas1 = rutas1;
+    }
+
+    /*public List<Ruta> getRutas() {
         return rutas;
     }
 
     public void setRutas(List<Ruta> rutas) {
         this.rutas = rutas;
     }
+*/
 
 /*    @OneToMany(mappedBy = "horario")
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -53,6 +65,7 @@ public class Horario {
         Date date = new Date();
         HoraInicio = horaInicio;
         HoraFin = horaFin;
+        dias = date.toString();
     }
 
     public Horario(String dia, String horaInicio, String horaFin) {

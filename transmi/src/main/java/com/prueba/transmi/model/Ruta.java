@@ -26,6 +26,23 @@ public class Ruta {
     @ManyToMany(mappedBy = "rutas", cascade = CascadeType.PERSIST)
     private List<Estacion> estaciones = new ArrayList<>();
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "horario_id")
+    private Horario horario;
+
+    public Horario getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Horario horario) {
+        this.horario = horario;
+    }
+
+    public Ruta(List<Estacion> estaciones, Horario horario) {
+        this.estaciones = estaciones;
+        this.horario = horario;
+    }
+
     public List<Estacion> getEstaciones() {
         return estaciones;
     }
