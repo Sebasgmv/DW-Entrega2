@@ -21,40 +21,40 @@ public class CoordiService {
     public List<Conductor> listarConductores() {
         return conductorRepository.findAll();
     }
-
-    public List<Bus> listarBuses() {
-        return busRepository.findAll();
-    }
-
     public Conductor recuperarConductor(Long id) {
         return conductorRepository.findById(id).orElseThrow();
     }
-
-    public Bus recuperarBus(Long id) {
-        return busRepository.findById(id).orElseThrow();
-    }
-
     public void guardarConductor(Conductor conductor) {
         conductorRepository.save(conductor);
     }
     public Conductor crearConductor(Conductor conductor) {
         return conductorRepository.save(conductor);
     }
-    public Bus crearBus(Bus bus) {
-        return busRepository.save(bus);
-    }
-
     public Conductor updateConductor(Conductor conductor) {
         return conductorRepository.save(conductor);
+    }
+    public void borrarConductor(long id) {
+        conductorRepository.deleteById(id);
+    }
+    public List<Bus> listarBuses() {
+        return busRepository.findAll();
+    }
+
+    public Bus recuperarBus(Long id) {
+        return busRepository.findById(id).orElseThrow();
+    }
+
+    public Bus crearBus(Bus bus) {
+        return busRepository.save(bus);
     }
 
     public Bus updateBus(Bus bus) {
         return busRepository.save(bus);
     }
-
-    public void borrarConductor(long id) {
-        conductorRepository.deleteById(id);
+    public void borrarBus(long id) {
+        busRepository.deleteById(id);
     }
+
 
     public List<Conductor> buscarPorNombre(String textoBusqueda) {
         // return personRepository.findAllByLastNameStartingWith(textoBusqueda);

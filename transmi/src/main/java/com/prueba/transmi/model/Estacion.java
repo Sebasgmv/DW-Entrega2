@@ -6,6 +6,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Estacion {
@@ -17,11 +19,25 @@ public class Estacion {
 
     @Column(name = "nombre", nullable = true)
     private String nombre;
-
     @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "estacion_rutas",
+            joinColumns = @JoinColumn(name = "estacion_id"),
+            inverseJoinColumns = @JoinColumn(name = "rutas_id"))
+    private List<Ruta> rutas = new ArrayList<>();
+
+    public List<Ruta> getRutas() {
+        return rutas;
+    }
+
+    public void setRutas(List<Ruta> rutas) {
+        this.rutas = rutas;
+    }
+
+    /*@JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ruta_id")
-    private Ruta ruta;
+    private Ruta ruta;*/
 
     public Long getId() {
         return id;
@@ -46,11 +62,10 @@ public class Estacion {
         this.nombre = nombre;
     }
 
-    public Ruta getRuta() {
+    /*public Ruta getRuta() {
         return ruta;
     }
-
     public void setRuta(Ruta ruta) {
         this.ruta = ruta;
-    }
+    }*/
 }

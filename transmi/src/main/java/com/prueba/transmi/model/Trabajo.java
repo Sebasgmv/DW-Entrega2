@@ -20,10 +20,10 @@ public class Trabajo {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ruta_id")
     private Ruta ruta;
-    @JsonIgnore
+   /* @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "horario_id")
-    private Horario horario;
+    private Horario horario;*/
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -41,10 +41,9 @@ public class Trabajo {
     public Trabajo() {
     }
 
-    public Trabajo(Bus bus, Ruta ruta, Horario horario, Conductor conductor) {
+    public Trabajo(Bus bus, Ruta ruta, Conductor conductor) {
         this.bus = bus;
         this.ruta = ruta;
-        this.horario = horario;
         this.conductor = conductor;
     }
 
@@ -63,15 +62,6 @@ public class Trabajo {
     public void setRuta(Ruta ruta) {
         this.ruta = ruta;
     }
-
-    public Horario getHorario() {
-        return horario;
-    }
-
-    public void setHorario(Horario horario) {
-        this.horario = horario;
-    }
-
     public Conductor getConductor() {
         return conductor;
     }

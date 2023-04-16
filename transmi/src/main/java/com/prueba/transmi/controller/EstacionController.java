@@ -1,10 +1,8 @@
 package com.prueba.transmi.controller;
 
-import com.prueba.transmi.model.Bus;
 import com.prueba.transmi.model.Estacion;
 import com.prueba.transmi.repository.EstacionRepository;
 import com.prueba.transmi.service.AdminService;
-import com.prueba.transmi.service.CoordiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +46,10 @@ public class EstacionController {
     @PutMapping("")
     public Estacion editarEstacion(@Valid @RequestBody Estacion estacion) {
         return adminService.updateEstacion(estacion);
+    }
+    @CrossOrigin("http://localhost:4201/")
+    @DeleteMapping("/delete/{id}")
+    public void eliminarEstacion(@PathVariable Long id) {
+        adminService.borrarEstacion(id);
     }
 }

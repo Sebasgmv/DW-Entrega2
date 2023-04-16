@@ -1,6 +1,7 @@
 package com.prueba.transmi.model;
 
 
+import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -15,14 +16,28 @@ public class Horario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    private Date dia;
+    private String dias;
 
     private String HoraInicio;
     private String HoraFin;
 
-    @OneToMany(mappedBy = "horario")
+    @ManyToMany
+    @JoinTable(name = "horario_rutas",
+            joinColumns = @JoinColumn(name = "horario_id"),
+            inverseJoinColumns = @JoinColumn(name = "rutas_id"))
+    private List<Ruta> rutas = new ArrayList<>();
+
+    public List<Ruta> getRutas() {
+        return rutas;
+    }
+
+    public void setRutas(List<Ruta> rutas) {
+        this.rutas = rutas;
+    }
+
+/*    @OneToMany(mappedBy = "horario")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<Trabajo> trabajos = new ArrayList<>();
+    private List<Trabajo> trabajos = new ArrayList<>();*/
 
     public Long getId() {
         return id;
@@ -31,24 +46,27 @@ public class Horario {
     public void setId(Long id) {
         this.id = id;
     }
-
-    Date date = new Date();
     public Horario() {
-        this.dia = date;
     }
 
     public Horario(String horaInicio, String horaFin) {
-        this.dia = date;
+        Date date = new Date();
         HoraInicio = horaInicio;
         HoraFin = horaFin;
     }
 
-    public Date getDia() {
-        return dia;
+    public Horario(String dia, String horaInicio, String horaFin) {
+        this.dias = dia;
+        HoraInicio = horaInicio;
+        HoraFin = horaFin;
     }
 
-    public void setDia(Date dia) {
-        this.dia = dia;
+    public String getDias() {
+        return dias;
+    }
+
+    public void setDias(String dias) {
+        this.dias = dias;
     }
 
     public String getHoraInicio() {
@@ -67,11 +85,4 @@ public class Horario {
         HoraFin = horaFin;
     }
 
-    public List<Trabajo> getTrabajos() {
-        return trabajos;
-    }
-
-    public void setTrabajos(List<Trabajo> trabajos) {
-        this.trabajos = trabajos;
-    }
 }

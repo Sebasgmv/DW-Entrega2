@@ -49,4 +49,9 @@ public class BusController {
     public Bus editarBus(@Valid @RequestBody Bus bus) {
         return coordiService.updateBus(bus);
     }
+    @CrossOrigin("http://localhost:4201/")
+    @DeleteMapping("/delete/{id}")
+    public void eliminarBus(@PathVariable Long id) {
+        coordiService.borrarBus(id);
+    }
 }

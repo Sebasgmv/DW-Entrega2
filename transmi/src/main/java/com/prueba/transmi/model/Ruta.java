@@ -1,6 +1,7 @@
 package com.prueba.transmi.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -15,12 +16,23 @@ public class Ruta {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToMany(mappedBy = "ruta", cascade = CascadeType.PERSIST)
-    private List<Estacion> estaciones = new ArrayList<>();
-
+/*    @OneToMany(mappedBy = "ruta", cascade = CascadeType.PERSIST)
+    private List<Estacion> estaciones = new ArrayList<>();*/
+    @JsonIgnore
     @OneToMany(mappedBy = "ruta")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Trabajo> trabajos = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "rutas", cascade = CascadeType.PERSIST)
+    private List<Estacion> estaciones = new ArrayList<>();
+
+    public List<Estacion> getEstaciones() {
+        return estaciones;
+    }
+
+    public void setEstaciones(List<Estacion> estaciones) {
+        this.estaciones = estaciones;
+    }
 
     public Long getId() {
         return id;
@@ -35,14 +47,6 @@ public class Ruta {
 
     public Ruta(List<Estacion> estaciones) {
         this.estaciones = estaciones;
-    }
-
-    public List<Estacion> getEstaciones() {
-        return estaciones;
-    }
-
-    public void setEstaciones(List<Estacion> estacions) {
-        this.estaciones = estacions;
     }
 
     public List<Trabajo> getTrabajos() {
