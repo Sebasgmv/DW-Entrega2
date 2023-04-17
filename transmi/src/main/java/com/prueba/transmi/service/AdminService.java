@@ -1,21 +1,23 @@
 package com.prueba.transmi.service;
 
-import com.prueba.transmi.model.Bus;
-import com.prueba.transmi.model.Conductor;
-import com.prueba.transmi.model.Estacion;
-import com.prueba.transmi.model.Ruta;
+import com.prueba.transmi.model.*;
 import com.prueba.transmi.repository.ConductorRepository;
 import com.prueba.transmi.repository.EstacionRepository;
 import com.prueba.transmi.repository.RutaRepository;
+import com.prueba.transmi.repository.TrabajoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class AdminService {
     @Autowired
     private EstacionRepository estacionRepository;
+
+    @Autowired
+    private TrabajoRepositorio trabajoRepositorio;
 
     @Autowired
     private RutaRepository rutaRepository;
@@ -42,6 +44,21 @@ public class AdminService {
         rutaRepository.deleteById(id);
     }
 
+    public List<Trabajo> listarTrabajo() {
+        return trabajoRepositorio.findAll();
+    }
+
+    public List<Bus> obtenerBusesPorIdConductor(Long idConductor) {
+        List<Bus> buses = new ArrayList<>();
+        List<Trabajo> trabajos = trabajoRepositorio.findByConductorId(idConductor);
+        for (Trabajo trabajo : trabajos) {
+            Bus bus = trabajo.getBus();
+            if (bus != null) {
+                buses.add(bus);
+            }
+        }
+        return buses;
+    }
 
     public List<Estacion> listarEstacion() {
         return estacionRepository.findAll();

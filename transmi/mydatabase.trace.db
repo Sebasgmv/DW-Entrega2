@@ -81,3 +81,7 @@ The connection was not closed by the application and is garbage collected [90018
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
 	... 17 more
+2023-04-17 12:13:22 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "CONDUCTOR" no encontrada
+Table "CONDUCTOR" not found; SQL statement:
+SELECT * FROM CONDUCTOR TRABAJO [42102-214]
