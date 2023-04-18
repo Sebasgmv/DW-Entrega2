@@ -85,6 +85,3 @@ The connection was not closed by the application and is garbage collected [90018
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "CONDUCTOR" no encontrada
 Table "CONDUCTOR" not found; SQL statement:
 SELECT * FROM CONDUCTOR TRABAJO [42102-214]
-2023-04-17 18:23:20 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRABAJO" not found (this database is empty); SQL statement:
-select trabajo0_.id as id1_9_, trabajo0_.bus_id as bus_id2_9_, trabajo0_.conductor_id as conducto3_9_, trabajo0_.ruta_id as ruta_id4_9_ from trabajo trabajo0_ left outer join conductores conductor1_ on trabajo0_.conductor_id=conductor1_.id where conductor1_.id=? [42104-214]

@@ -1,6 +1,5 @@
 package com.prueba.transmi.controller;
 
-import com.prueba.transmi.model.Bus;
 import com.prueba.transmi.model.Estacion;
 import com.prueba.transmi.model.Ruta;
 import com.prueba.transmi.repository.RutaRepository;
@@ -53,13 +52,6 @@ public class RutaController {
     @DeleteMapping("/delete/{id}")
     public void eliminarRuta(@PathVariable Long id) {
         adminService.borrarRuta(id);
-    }
-
-    @GetMapping("/view2/{idRuta}")
-    @CrossOrigin("http://localhost:4201/")
-    public List<Estacion> obtenerEstacionesPorId(@PathVariable Long idRuta) {
-        List<Estacion> estacion = adminService.getEstacionesPorRutaId(idRuta);
-        return estacion;
     }
 
 }
