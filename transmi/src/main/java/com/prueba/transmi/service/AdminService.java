@@ -1,10 +1,7 @@
 package com.prueba.transmi.service;
 
 import com.prueba.transmi.model.*;
-import com.prueba.transmi.repository.ConductorRepository;
-import com.prueba.transmi.repository.EstacionRepository;
-import com.prueba.transmi.repository.RutaRepository;
-import com.prueba.transmi.repository.TrabajoRepositorio;
+import com.prueba.transmi.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +18,40 @@ public class AdminService {
 
     @Autowired
     private RutaRepository rutaRepository;
+
+    @Autowired
+    private HorarioRepository horarioRepository;
+
+    public List<Horario> listarHorario() {
+        return horarioRepository.findAll();
+    }
+    public Horario recuperarHorario(Long id) {
+        return horarioRepository.findById(id).orElseThrow();
+    }
+
+    public void guardarHorario(Horario horario) {
+        horarioRepository.save(horario);
+    }
+    public Horario crearHorario(Horario horario) {
+        return horarioRepository.save(horario);
+    }
+
+    public Horario updateHorario(Horario horario) {
+        return horarioRepository.save(horario);
+    }
+
+    public void borrarHorario(long id) {
+        rutaRepository.deleteById(id);
+    }
+    public Horario getHorarioPorRutaId(Long rutaId) {
+        return rutaRepository.findHorarioByRutaId(rutaId);
+    }
+
+
+
+
+
+
 
     public List<Ruta> listarRuta() {
         return rutaRepository.findAll();

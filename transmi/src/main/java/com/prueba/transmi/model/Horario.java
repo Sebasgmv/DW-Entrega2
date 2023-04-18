@@ -1,6 +1,8 @@
 package com.prueba.transmi.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Comment;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -9,8 +11,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Horario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +28,7 @@ public class Horario {
             inverseJoinColumns = @JoinColumn(name = "rutas_id"))
     private List<Ruta> rutas = new ArrayList<>();*/
 
+    @JsonIgnore
     @OneToMany(mappedBy = "horario", orphanRemoval = true)
     private List<Ruta> rutas1 = new ArrayList<>();
 
@@ -67,8 +70,8 @@ public class Horario {
         dias = date.toString();
     }
 
-    public Horario(String dia, String horaInicio, String horaFin) {
-        this.dias = dia;
+    public Horario(String dias, String horaInicio, String horaFin) {
+        this.dias = dias;
         HoraInicio = horaInicio;
         HoraFin = horaFin;
     }
