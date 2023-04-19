@@ -3,9 +3,6 @@ package com.prueba.transmi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.Comment;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -30,14 +27,14 @@ public class Horario {
 
     @JsonIgnore
     @OneToMany(mappedBy = "horario", orphanRemoval = true)
-    private List<Ruta> rutas1 = new ArrayList<>();
+    private List<Ruta> rutas = new ArrayList<>();
 
-    public List<Ruta> getRutas1() {
-        return rutas1;
+    public List<Ruta> getRutas() {
+        return rutas;
     }
 
-    public void setRutas1(List<Ruta> rutas1) {
-        this.rutas1 = rutas1;
+    public void setRutas(List<Ruta> rutas) {
+        this.rutas = rutas;
     }
 
     /*public List<Ruta> getRutas() {
@@ -100,4 +97,7 @@ public class Horario {
         HoraFin = horaFin;
     }
 
+    public boolean addRuta(Ruta r) {
+        return rutas.add(r);
+    }
 }

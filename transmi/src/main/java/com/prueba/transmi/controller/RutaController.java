@@ -40,6 +40,7 @@ public class RutaController {
     @CrossOrigin("http://localhost:4201/")
     @PostMapping("")
     public Ruta crearRuta(@Valid @RequestBody Ruta ruta) {
+        log.info(ruta.toString());
         return adminService.crearRuta(ruta);
     }
 

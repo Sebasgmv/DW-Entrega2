@@ -5,7 +5,10 @@ import com.prueba.transmi.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -47,12 +50,6 @@ public class AdminService {
         return rutaRepository.findHorarioByRutaId(rutaId);
     }
 
-
-
-
-
-
-
     public List<Ruta> listarRuta() {
         return rutaRepository.findAll();
     }
@@ -60,14 +57,27 @@ public class AdminService {
         return rutaRepository.findById(id).orElseThrow();
     }
 
-    public void guardarRuta(Ruta ruta) {
-        rutaRepository.save(ruta);
-    }
+    @Transactional
     public Ruta crearRuta(Ruta ruta) {
+        rutaRepository.save(ruta);
+        for (Estacion estacion: ruta.getEstaciones()){
+            Estacion estacion2 = estacionRepository.findById(estacion.getId()).orElseThrow();
+            estacion2.addRuta(ruta);
+            estacionRepository.save(estacion);
+        }
+        Horario horario = horarioRepository.findById(ruta.getHorario().getId()).orElseThrow();
+        horario.addRuta(ruta);
+        horarioRepository.save(horario);
         return rutaRepository.save(ruta);
     }
-
+    @Transactional
     public Ruta updateRuta(Ruta ruta) {
+        for (Estacion estacion: ruta.getEstaciones()){
+            List<Ruta> rutas = Arrays.asList(ruta);
+            Estacion estacion1 = recuperarEstacion(estacion.getId());
+            estacion1.setRutas(rutas);
+            estacionRepository.save(estacion1);
+        }
         return rutaRepository.save(ruta);
     }
 

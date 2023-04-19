@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -46,6 +47,10 @@ public class Ruta {
         this.estaciones = estaciones;
         this.horario = horario;
     }
+    public Ruta(Ruta ruta) {
+        this.estaciones = ruta.getEstaciones();
+        this.horario = ruta.getHorario();
+    }
 
     public List<Estacion> getEstaciones() {
         return estaciones;
@@ -65,7 +70,6 @@ public class Ruta {
 
     public Ruta() {
     }
-
     public Ruta(List<Estacion> estaciones) {
         this.estaciones = estaciones;
     }
@@ -76,5 +80,9 @@ public class Ruta {
 
     public void setTrabajos(List<Trabajo> trabajos) {
         this.trabajos = trabajos;
+    }
+
+    public boolean addEstacion(Estacion e) {
+        return estaciones.add(e);
     }
 }
