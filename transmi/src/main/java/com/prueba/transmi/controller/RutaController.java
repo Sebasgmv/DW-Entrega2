@@ -2,6 +2,7 @@ package com.prueba.transmi.controller;
 
 import com.prueba.transmi.model.Bus;
 import com.prueba.transmi.model.Estacion;
+import com.prueba.transmi.model.Horario;
 import com.prueba.transmi.model.Ruta;
 import com.prueba.transmi.repository.RutaRepository;
 import com.prueba.transmi.service.AdminService;
@@ -41,7 +42,7 @@ public class RutaController {
     @CrossOrigin("http://localhost:4201/")
     @PostMapping("")
     public Ruta crearRuta(@Valid @RequestBody Ruta ruta) {
-        log.info(ruta.toString());
+        log.warn(ruta.toString());
         return adminService.crearRuta(ruta);
     }
 

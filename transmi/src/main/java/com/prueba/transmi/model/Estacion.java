@@ -21,11 +21,9 @@ public class Estacion {
 
     @Column(name = "nombre", nullable = true)
     private String nombre;
+
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "estacion_rutas",
-            joinColumns = @JoinColumn(name = "estacion_id"),
-            inverseJoinColumns = @JoinColumn(name = "rutas_id"))
+    @ManyToMany(mappedBy = "estaciones")
     private List<Ruta> rutas = new ArrayList<>();
 
     public List<Ruta> getRutas() {
@@ -35,11 +33,19 @@ public class Estacion {
     public void setRutas(List<Ruta> rutas) {
         this.rutas = rutas;
     }
+//    @JsonIgnore
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+//    @JoinTable(name = "estacion_rutas",
+//            joinColumns = @JoinColumn(name = "estacion_id"),
+//            inverseJoinColumns = @JoinColumn(name = "rutas_id"))
+//    private List<Ruta> rutas = new ArrayList<>();
 
     /*@JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ruta_id")
     private Ruta ruta;*/
+
+
 
     public Long getId() {
         return id;

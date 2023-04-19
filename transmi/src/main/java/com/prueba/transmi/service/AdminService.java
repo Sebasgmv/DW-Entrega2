@@ -57,26 +57,40 @@ public class AdminService {
         return rutaRepository.findById(id).orElseThrow();
     }
 
-    @Transactional
+
     public Ruta crearRuta(Ruta ruta) {
-        rutaRepository.save(ruta);
-        for (Estacion estacion: ruta.getEstaciones()){
-            Estacion estacion2 = estacionRepository.findById(estacion.getId()).orElseThrow();
-            estacion2.addRuta(ruta);
-            estacionRepository.save(estacion);
-        }
-        Horario horario = horarioRepository.findById(ruta.getHorario().getId()).orElseThrow();
-        horario.addRuta(ruta);
-        horarioRepository.save(horario);
         return rutaRepository.save(ruta);
+    }
+
+    @Transactional
+    public void asociarHorario(Long idRuta, Long idHorario){
+        Ruta ruta = rutaRepository.findById(idRuta).orElseThrow();
+        Horario horario = horarioRepository.findById(idHorario).orElseThrow();
+
+        ruta.setHorario(horario);
+        horario.addRuta(ruta);
+
+        rutaRepository.save(ruta);
+        horarioRepository.save(horario);
+    }
+
+    @Transactional
+    public void asociarEstacion(Long idRuta, Long idEstacion){
+        Ruta ruta = rutaRepository.findById(idRuta).orElseThrow();
+        Estacion estacion = estacionRepository.findById(idEstacion).orElseThrow();
+
+        ruta.addEstacion(estacion);
+        estacion.addRuta(ruta);
+
+        rutaRepository.save(ruta);
+        estacionRepository.save(estacion);
     }
     @Transactional
     public Ruta updateRuta(Ruta ruta) {
+        rutaRepository.save(ruta);
+        asociarHorario(ruta.getId(), ruta.getHorario().getId());
         for (Estacion estacion: ruta.getEstaciones()){
-            List<Ruta> rutas = Arrays.asList(ruta);
-            Estacion estacion1 = recuperarEstacion(estacion.getId());
-            estacion1.setRutas(rutas);
-            estacionRepository.save(estacion1);
+            asociarEstacion(ruta.getId(), estacion.getId());
         }
         return rutaRepository.save(ruta);
     }

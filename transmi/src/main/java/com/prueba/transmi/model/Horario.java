@@ -25,8 +25,9 @@ public class Horario {
             inverseJoinColumns = @JoinColumn(name = "rutas_id"))
     private List<Ruta> rutas = new ArrayList<>();*/
 
+//    , orphanRemoval = true
     @JsonIgnore
-    @OneToMany(mappedBy = "horario", orphanRemoval = true)
+    @OneToMany(mappedBy = "horario")
     private List<Ruta> rutas = new ArrayList<>();
 
     public List<Ruta> getRutas() {

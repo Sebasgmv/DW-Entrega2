@@ -58,19 +58,32 @@ public class DataBase implements ApplicationRunner {
         Horario horario1 = new Horario("sabado, domingo","5:00 AM", "5:00 PM");
         Horario horario2 = new Horario("festivos","5:00 AM", "5:00 PM");
 
+        List<Horario> horarios =new ArrayList<>();
+        horarios.add(horario);
+        horarios.add(horario1);
+        horarios.add(horario2);
+        horarioRepository.saveAll(horarios);
+
         Estacion estacion = new Estacion("Calle 45");
         Estacion estacion1 = new Estacion("Calle 39");
         Estacion estacion2 = new Estacion("Pepe Sierra");
 
+        List estaciones0 = new ArrayList();
         List estaciones = Arrays.asList(estacion);
-        List estaciones1 = Arrays.asList(estacion1, estacion2);
-        List estaciones2 = Arrays.asList(estacion2);
+        List estaciones1 = Arrays.asList(estacion, estacion1);
+        List estaciones2 = Arrays.asList(estacion, estacion1, estacion2);
+
+        estaciones0.add(estacion);
+        estaciones0.add(estacion1);
+        estaciones0.add(estacion2);
+
+        estacionRepository.saveAll(estaciones0);
 
 
         Ruta ruta = new Ruta(estaciones, horario);
 //        ruta.setEstaciones(estaciones1);
         Ruta ruta1 = new Ruta(estaciones1, horario1);
-        Ruta ruta2 = new Ruta(estaciones1, horario1);
+        Ruta ruta2 = new Ruta(estaciones2, horario1);
 
         List<Ruta> rutas = Arrays.asList(ruta);
         List<Ruta> rutas1 = Arrays.asList(ruta1);

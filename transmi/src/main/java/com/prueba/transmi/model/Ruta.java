@@ -24,16 +24,31 @@ public class Ruta {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Trabajo> trabajos = new ArrayList<>();
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "rutas", cascade = CascadeType.PERSIST)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<Estacion> estaciones = new ArrayList<>();
+//    @JsonIgnore
+//    @ManyToMany(mappedBy = "rutas")
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    private List<Estacion> estaciones = new ArrayList<>();
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "horario_id")
     private Horario horario;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "ruta_estaciones",
+            joinColumns = @JoinColumn(name = "ruta_id"),
+            inverseJoinColumns = @JoinColumn(name = "estaciones_id"))
+    private List<Estacion> estaciones = new ArrayList<>();
+
+    public List<Estacion> getEstaciones() {
+        return estaciones;
+    }
+
+    public void setEstaciones(List<Estacion> estaciones) {
+        this.estaciones = estaciones;
+    }
 
     public Horario getHorario() {
         return horario;
@@ -50,14 +65,6 @@ public class Ruta {
     public Ruta(Ruta ruta) {
         this.estaciones = ruta.getEstaciones();
         this.horario = ruta.getHorario();
-    }
-
-    public List<Estacion> getEstaciones() {
-        return estaciones;
-    }
-
-    public void setEstaciones(List<Estacion> estaciones) {
-        this.estaciones = estaciones;
     }
 
     public Long getId() {
@@ -84,5 +91,14 @@ public class Ruta {
 
     public boolean addEstacion(Estacion e) {
         return estaciones.add(e);
+    }
+
+    @Override
+    public String toString() {
+        return "Ruta{" +
+                "id=" + id +
+                ", horario=" + horario +
+                ", estaciones=" + estaciones +
+                '}';
     }
 }
