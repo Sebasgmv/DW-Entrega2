@@ -64,7 +64,10 @@ public class Estacion {
         this.nombre = nombre;
     }
 
-    /*public Ruta getRuta() {
+    public boolean addRuta(Ruta r) {
+        return rutas.add(r);
+    }
+/*public Ruta getRuta() {
         return ruta;
     }
     public void setRuta(Ruta ruta) {

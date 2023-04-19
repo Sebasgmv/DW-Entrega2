@@ -88,3 +88,31 @@ SELECT * FROM CONDUCTOR TRABAJO [42102-214]
 2023-04-17 18:23:20 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRABAJO" not found (this database is empty); SQL statement:
 select trabajo0_.id as id1_9_, trabajo0_.bus_id as bus_id2_9_, trabajo0_.conductor_id as conducto3_9_, trabajo0_.ruta_id as ruta_id4_9_ from trabajo trabajo0_ left outer join conductores conductor1_ on trabajo0_.conductor_id=conductor1_.id where conductor1_.id=? [42104-214]
+2023-04-18 07:31:03 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]ESTACION"; se esperaba "EXPLAIN, EXECUTE"
+Syntax error in SQL statement "[*]ESTACION"; expected "EXPLAIN, EXECUTE"; SQL statement:
+ESTACION [42001-214]
+2023-04-18 07:34:14 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]ESTACION_RUTAS"; se esperaba "EXPLAIN, EXECUTE"
+Syntax error in SQL statement "[*]ESTACION_RUTAS"; expected "EXPLAIN, EXECUTE"; SQL statement:
+ESTACION_RUTAS [42001-214]
+2023-04-18 13:07:13 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]RUTA"; se esperaba "ROLLBACK, REVOKE, RUNSCRIPT, RELEASE"
+Syntax error in SQL statement "[*]RUTA"; expected "ROLLBACK, REVOKE, RUNSCRIPT, RELEASE"; SQL statement:
+RUTA [42001-214]
+2023-04-18 18:59:41 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]RUTA"; se esperaba "ROLLBACK, REVOKE, RUNSCRIPT, RELEASE"
+Syntax error in SQL statement "[*]RUTA"; expected "ROLLBACK, REVOKE, RUNSCRIPT, RELEASE"; SQL statement:
+RUTA [42001-214]
+2023-04-18 19:04:15 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]ESTACION_RUTAS"; se esperaba "EXPLAIN, EXECUTE"
+Syntax error in SQL statement "[*]ESTACION_RUTAS"; expected "EXPLAIN, EXECUTE"; SQL statement:
+ESTACION_RUTAS [42001-214]
+2023-04-18 19:56:25 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]ESTACION_RUTAS"; se esperaba "EXPLAIN, EXECUTE"
+Syntax error in SQL statement "[*]ESTACION_RUTAS"; expected "EXPLAIN, EXECUTE"; SQL statement:
+ESTACION_RUTAS [42001-214]
+2023-04-18 19:56:27 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]ESTACION_RUTAS"; se esperaba "EXPLAIN, EXECUTE"
+Syntax error in SQL statement "[*]ESTACION_RUTAS"; expected "EXPLAIN, EXECUTE"; SQL statement:
+ESTACION_RUTAS [42001-214]
