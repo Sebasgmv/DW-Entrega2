@@ -1,5 +1,8 @@
 package com.prueba.transmi.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prueba.transmi.model.Conductor;
 import com.prueba.transmi.repository.ConductorRepository;
 import com.prueba.transmi.service.CoordiService;
@@ -10,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -71,6 +76,42 @@ public class ConductorController {
     @GetMapping("/view/{idConductor}")
     public Conductor recuperarConductor(Model model, @PathVariable("idConductor") Long id) {
         return coordiService.recuperarConductor(id);
+    }
+
+    @JsonIgnore
+    @GetMapping("/view/{idConductor}/test")
+    public String recuperarConductorTest(Model model, @PathVariable("idConductor") Long id) throws JsonProcessingException {
+        Conductor conductor = coordiService.recuperarConductor(id);
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonStr = mapper.writeValueAsString(conductor);
+        return jsonStr;
+    }
+
+    @GetMapping("/view/{id}/nombre")
+    @Transactional
+    public String nombre(@PathVariable Long id) {
+        return conductorRepository.findById(id).orElseThrow().getNombre();
+    }
+
+    @PostMapping("/{id}/cambiarNombre")
+    @Transactional
+    public String cambiarNombre(@PathVariable Long id, @RequestBody String nombre) {
+        Conductor conductor = conductorRepository.findById(id).orElseThrow();
+
+        conductor.setNombre(nombre);
+        conductorRepository.save(conductor);
+        return conductor.getNombre();
+    }
+
+    @PostMapping("crear-conductor")
+    public Conductor crearConductorTest(@Valid @RequestBody Conductor conductor) {
+        log.info(conductor.toString());
+        return coordiService.crearConductor(conductor);
+    }
+
+    @PutMapping("editar-conductor")
+    public Conductor editarConductorTest(@Valid @RequestBody Conductor conductor) {
+        return coordiService.updateConductor(conductor);
     }
 
     @CrossOrigin("http://localhost:4201/")

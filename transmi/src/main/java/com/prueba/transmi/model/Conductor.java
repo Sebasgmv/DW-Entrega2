@@ -8,6 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "conductores")
@@ -84,7 +85,38 @@ public class Conductor {
         this.trabajos = trabajos;
     }
 
-//    public boolean addDivision(Division div) {
+    @Override
+    public String toString() {
+        return "Conductor{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", cedula='" + cedula + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", direccion='" + direccion + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Conductor conductor = (Conductor) o;
+        return Objects.equals(id, conductor.id) && Objects.equals(nombre, conductor.nombre) && Objects.equals(cedula, conductor.cedula) && Objects.equals(telefono, conductor.telefono) && Objects.equals(direccion, conductor.direccion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, cedula, telefono, direccion);
+    }
+
+    public Conductor(Long id, String nombre, String cedula, String telefono, String direccion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.telefono = telefono;
+        this.direccion = direccion;
+    }
+    //    public boolean addDivision(Division div) {
 //        return divisions.add(div);
 //    }
 }
