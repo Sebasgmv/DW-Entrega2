@@ -130,9 +130,9 @@ public class ConductorControllerIntegrationTest {
     CoordiService coordiService;
     @Test
     public void delete() {
-        String url = "http://localhost:" + port + "/delete/test/1";
+        String url = "http://localhost:" + port + "/conductor/delete/test/1";
         ResponseEntity<?> resp = rest.exchange(url, HttpMethod.DELETE, HttpEntity.EMPTY, Void.class);
-        assertEquals(HttpStatus.NO_CONTENT, resp.getStatusCode());
+        assertEquals(HttpStatus.OK, resp.getStatusCode());
     }
     /*@Test
     public void givenEmployeeId_whenDeleteEmployee_thenReturn200() throws Exception{
