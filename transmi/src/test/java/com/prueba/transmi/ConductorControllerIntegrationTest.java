@@ -8,6 +8,8 @@ import com.prueba.transmi.repository.ConductorRepository;
 import com.prueba.transmi.service.CoordiService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.GsonTester;
@@ -38,6 +40,8 @@ public class ConductorControllerIntegrationTest {
 
     @Autowired
     ConductorRepository conductorRepository;
+
+    Logger log = LoggerFactory.getLogger(getClass());
 
     @BeforeEach
     void init() {
@@ -131,7 +135,8 @@ public class ConductorControllerIntegrationTest {
     @Test
     public void delete() {
         String url = "http://localhost:" + port + "/conductor/delete/test/1";
-        ResponseEntity<?> resp = rest.exchange(url, HttpMethod.DELETE, HttpEntity.EMPTY, Void.class);
+        ResponseEntity<String> resp = rest.exchange(url, HttpMethod.DELETE, HttpEntity.EMPTY, String.class);
+        log.warn("Respuesta: " +(String) resp.getBody());
         assertEquals(HttpStatus.OK, resp.getStatusCode());
     }
     /*@Test
