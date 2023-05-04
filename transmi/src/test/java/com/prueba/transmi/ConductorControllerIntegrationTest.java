@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prueba.transmi.model.Conductor;
 import com.prueba.transmi.repository.ConductorRepository;
+import com.prueba.transmi.service.CoordiService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,19 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.web.servlet.ResultActions;
 
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.BDDMockito.willDoNothing;
+import static org.springframework.http.RequestEntity.delete;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ActiveProfiles("integrationtest")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -117,4 +125,26 @@ public class ConductorControllerIntegrationTest {
         String conductorr2 = rest.getForObject("http://localhost:" + port + "/conductor/view/1/test", String.class);
         System.out.println("Recibido Modificado: " + conductorr2);
     }
+
+    @Autowired
+    CoordiService coordiService;
+    @Test
+    public void delete() {
+        String url = "http://localhost:" + port + "/delete/test/1";
+        ResponseEntity<?> resp = rest.exchange(url, HttpMethod.DELETE, HttpEntity.EMPTY, Void.class);
+        assertEquals(HttpStatus.NO_CONTENT, resp.getStatusCode());
+    }
+    /*@Test
+    public void givenEmployeeId_whenDeleteEmployee_thenReturn200() throws Exception{
+        // given - precondition or setup
+        Long conductorId = 1L;
+        willDoNothing().given(coordiService).borrarConductor(conductorId);
+
+        // when -  action or the behaviour that we are going test
+        ResultActions response = mockMvc.perform(delete("/api/employees/{id}", employeeId));
+
+        // then - verify the output
+        response.andExpect(status().isOk())
+                .andDo(print());
+    }*/
 }

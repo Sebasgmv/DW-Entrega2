@@ -9,6 +9,8 @@ import com.prueba.transmi.service.CoordiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -118,6 +120,23 @@ public class ConductorController {
     @DeleteMapping("/delete/{id}")
     public void eliminarConductor(@PathVariable Long id) {
         coordiService.borrarConductor(id);
+    }
+
+
+    @DeleteMapping("/delete-test/{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long conductorId){
+        coordiService.borrarConductor(conductorId);
+        return new ResponseEntity<String>("Employee deleted successfully!.", HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/test/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
+        try {
+            String result = coordiService.deleteConduById(id);
+            return ResponseEntity.ok(result);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
     @GetMapping("/create")

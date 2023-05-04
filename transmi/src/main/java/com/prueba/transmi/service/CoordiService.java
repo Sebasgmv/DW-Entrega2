@@ -36,6 +36,15 @@ public class CoordiService {
     public void borrarConductor(long id) {
         conductorRepository.deleteById(id);
     }
+
+    public String deleteConduById(long id) {
+        try {
+            conductorRepository.deleteById(id);
+            return "SUCCESS";
+        } catch (Exception e) {
+            throw new RuntimeException("Error al eliminar el conductor con id " + id);
+        }
+    }
     public List<Bus> listarBuses() {
         return busRepository.findAll();
     }
