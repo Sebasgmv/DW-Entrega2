@@ -139,17 +139,5 @@ public class ConductorControllerIntegrationTest {
         log.warn("Respuesta: " +(String) resp.getBody());
         assertEquals(HttpStatus.OK, resp.getStatusCode());
     }
-    /*@Test
-    public void givenEmployeeId_whenDeleteEmployee_thenReturn200() throws Exception{
-        // given - precondition or setup
-        Long conductorId = 1L;
-        willDoNothing().given(coordiService).borrarConductor(conductorId);
 
-        // when -  action or the behaviour that we are going test
-        ResultActions response = mockMvc.perform(delete("/api/employees/{id}", employeeId));
-
-        // then - verify the output
-        response.andExpect(status().isOk())
-                .andDo(print());
-    }*/
 }
