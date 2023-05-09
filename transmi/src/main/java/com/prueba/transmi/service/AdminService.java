@@ -115,10 +115,6 @@ public class AdminService {
         return buses;
     }
 
-    public List<Estacion> getEstacionesPorRutaId(Long rutaId) {
-        return rutaRepository.findEstacionesByRutaId(rutaId);
-    }
-
     public List<Estacion> listarEstacion() {
         return estacionRepository.findAll();
     }

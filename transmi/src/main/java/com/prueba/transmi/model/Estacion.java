@@ -2,7 +2,6 @@ package com.prueba.transmi.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Estacion {
     @Id
     @OnDelete(action = OnDeleteAction.CASCADE)
